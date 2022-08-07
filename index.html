@@ -6,7 +6,13 @@
     </head>
     <body>
         <button onclick="rasterize(svg).then(function(e) { var a = document.createElement('a'); a.href = e; a.download = 'burst.png'; a.click(); })">Export</button>
-        <svg viewBox="0 0 1920 1920" style="background-color: black;"></svg>
+        <svg viewBox="0 0 1920 1920" style="background-color: black;">
+            <defs>
+                <filter id="fastBlur">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+                </filter>
+            </defs>
+        </svg>
         <script src="code.js"></script>
     </body>
 </html>

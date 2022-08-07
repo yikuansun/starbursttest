@@ -25,6 +25,7 @@ function makeStar() {
     star.setAttribute("points", points);
     svg.appendChild(star);
     star.style.fill = "white";
+    star.style.filter = "url(#fastBlur)";
 }
 
 function deleteStar() {
