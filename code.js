@@ -34,3 +34,22 @@ function deleteStar() {
 }
 
 makeStar();
+
+var starParams = {
+    numpts: 42,
+    innerRadius: 30,
+    burstSize: 300,
+    blurAmount: 4,
+};
+for (var input of document.querySelectorAll("form input")) {
+    input.addEventListener("input", function() {
+        starParams[this.id] = parseFloat(this.value);
+        deleteStar();
+        makeStar(
+            starParams.numpts,
+            starParams.innerRadius,
+            starParams.burstSize
+        );
+        document.querySelector("#fastBlur feGaussianBlur").setAttribute("stdDeviation", starParams.blurAmount);
+    });
+}
