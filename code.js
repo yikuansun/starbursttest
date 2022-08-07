@@ -53,3 +53,7 @@ for (var input of document.querySelectorAll("form input")) {
         document.querySelector("#fastBlur feGaussianBlur").setAttribute("stdDeviation", starParams.blurAmount);
     });
 }
+
+if (location.hash == "#Photopea") {
+    document.querySelector("#photopeaButton").style.display = "inline-block";
+}

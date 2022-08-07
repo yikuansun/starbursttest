@@ -3,9 +3,11 @@
     <head>
         <title>hola</title>
         <script src="https://yikuansun.github.io/lightning-experiment/rasterizer.js"></script>
+        <script src="https://yikuansun.github.io/lightning-experiment/lib/photopea.min.js"></script>
     </head>
     <body>
         <button onclick="rasterize(svg).then(function(e) { var a = document.createElement('a'); a.href = e; a.download = 'burst.png'; a.click(); })">Export</button>
+        <button id="photopeaButton" style="display: none;" onclick="rasterize(svg).then(function(e) { Photopea.runScript(window.parent, `app.open('${e}', null, true)`); })">Add to document</button>
         <svg viewBox="0 0 1920 1920" style="background-color: black;">
             <defs>
                 <filter id="fastBlur">
