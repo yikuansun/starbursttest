@@ -14,9 +14,9 @@ for (var i = 0; i < numpts; i++) {
         960 + Math.sin(i * 2 * Math.PI / numpts) * 300 * spokeLength
     } `;
     points += `${
-        960 + Math.cos((i * 2 + 1) * Math.PI / numpts) * 10
+        960 + Math.cos((i * 2 + 1) * Math.PI / numpts) * 30
     },${
-        960 + Math.sin((i * 2 + 1) * Math.PI / numpts) * 10
+        960 + Math.sin((i * 2 + 1) * Math.PI / numpts) * 30
     } `;
 }
 
