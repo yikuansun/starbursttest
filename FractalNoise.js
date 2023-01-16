@@ -14,13 +14,23 @@ class FractalNoise {
     setOptions(options) {
         for (var opt in options) {
             this.options[opt] = options[opt];
-            if (opt == "baseFrequency") this.svgFilter.setAttribute("baseFrequency", options[opt].join(" "));
-            else this.svgFilter.setAttribute(opt, options[opt]);
         }
+        this.svgFilter.innerHTML = `<feTurbulence
+            baseFrequency="${this.options.baseFrequency.join(" ")}"
+            type="${this.options.type}"
+            numOctaves="${this.options.numOctaves}"
+            seed="${this.options.seed}"
+            stitchTiles="${this.options.stitchTiles}"
+            color-interpolation-filters="linearRGB"
+        />`;
     }
 
     constructor(width, height, options) {
         this.svgFilter.id = `fNoiseFilter${Math.random().toFixed(8).replace("0.", "")}`;
+        this.svgFilter.setAttribute("x", "0%");
+        this.svgFilter.setAttribute("y", "0%");
+        this.svgFilter.setAttribute("width", "100%");
+        this.svgFilter.setAttribute("height", "100%");
         this.setOptions(options);
         this.width = width;
         this.height = height;
