@@ -4,6 +4,8 @@ class SpotComponent {
         intensity: 10,
         deformationFrequency: 0.006,
         deformationAmount: 1.6,
+        hue: 200,
+        saturation: 100,
     };
     radius = 1024;
 
@@ -35,5 +37,9 @@ class SpotComponent {
         ctx.globalCompositeOperation = "soft-light";
         ctx.filter = `saturate(0) contrast(${this.options.deformationAmount})`;
         ctx.drawImage(deformationTexture.canvas, 0, 0);
+
+        ctx.restore();
+        ctx.save();
+        colorvibrance(ctx, this.options.hue, this.options.saturation);
     }
 }
