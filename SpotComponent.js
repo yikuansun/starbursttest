@@ -22,5 +22,17 @@ class SpotComponent {
         ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         ctx.drawImage((new EllipticalGradient()).canvas, 0, this.options.intensity, this.canvas.width, this.canvas.height - this.options.intensity);
+
+        var deformationTexture = new FractalNoise(this.canvas.width, this.canvas.height, {
+            baseFrequency: [this.options.deformationFrequency, 0]
+        });
+        deformationTexture.render();
+        console.log(deformationTexture.svgFilter.id);
+
+        ctx.restore();
+        ctx.save();
+        ctx.globalCompositeOperation = "soft-light";
+        ctx.filter = "saturate(0)";
+        ctx.drawImage(deformationTexture.canvas, 0, 0);
     }
 }
