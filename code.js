@@ -59,7 +59,7 @@ if (location.hash == "#Photopea") {
 }
 
 var myBurst = new SpotComponent(512, {
-    intensity: 42,
+    intensity: 25,
     deformationFrequency: 0.006
 });
 myBurst.render();

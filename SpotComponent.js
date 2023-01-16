@@ -2,7 +2,8 @@ class SpotComponent {
     canvas = document.createElement("canvas");
     options = {
         intensity: 10,
-        deformationFrequency: 0.006
+        deformationFrequency: 0.006,
+        deformationAmount: 1.6,
     };
     radius = 1024;
 
@@ -32,7 +33,7 @@ class SpotComponent {
         ctx.restore();
         ctx.save();
         ctx.globalCompositeOperation = "soft-light";
-        ctx.filter = "saturate(0)";
+        ctx.filter = `saturate(0) contrast(${this.options.deformationAmount})`;
         ctx.drawImage(deformationTexture.canvas, 0, 0);
     }
 }
