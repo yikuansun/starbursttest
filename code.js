@@ -57,3 +57,10 @@ for (var input of document.querySelectorAll("form input")) {
 if (location.hash == "#Photopea") {
     document.querySelector("#photopeaButton").style.display = "inline-block";
 }
+
+var myBurst = new SpotComponent(512, {
+    intensity: 42,
+    deformationFrequency: 0.006
+});
+myBurst.render();
+document.body.appendChild(myBurst.canvas);

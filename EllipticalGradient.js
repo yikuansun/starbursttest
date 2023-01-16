@@ -19,7 +19,7 @@ class EllipticalGradient {
         var data = iData.data;
         for (var i = 0; i < data.length; i += 4) {
             var distFromTop = Math.floor(i / 4 / canv.width);
-            var pixelBrightness = getLuma(distFromTop, canv.height);
+            var pixelBrightness = this.getLuma(distFromTop, canv.height);
             data[i] = 255 * pixelBrightness;
             data[i + 1] = 255 * pixelBrightness;
             data[i + 2] = 255 * pixelBrightness;

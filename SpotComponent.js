@@ -17,5 +17,10 @@ class SpotComponent {
         this.canvas.width = this.radius * 2;
         this.canvas.height = this.radius * 2;
         var ctx = this.canvas.getContext("2d");
+        ctx.restore();
+        ctx.save();
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        ctx.drawImage((new EllipticalGradient()).canvas, 0, this.options.intensity, this.canvas.width, this.canvas.height - this.options.intensity);
     }
 }
