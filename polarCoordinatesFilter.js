@@ -12,19 +12,27 @@ function polarCoordinatesFilter(ctx) {
     var outputImageData = new ImageData(ctx.canvas.width, ctx.canvas.height);
     var inputData = inputImageData.data;
     var outputData = outputImageData.data;
-    for (var i = 0; i < inputData.length; i += 4) {
-        var inputCoords = iToXY(i, ctx.canvas.width, ctx.canvas.height);
-        var angle = inputCoords.x / ctx.canvas.width * 2 * Math.PI;
-        var radius = inputCoords.y / 2;
-        var targetCoords = {
-            x: Math.round(ctx.canvas.width / 2 - Math.sin(angle) * radius),
-            y: Math.round(ctx.canvas.height / 2 - Math.cos(angle) * radius)
-        };
-        var targetI = xYToI(targetCoords.x, targetCoords.y, ctx.canvas.width, ctx.canvas.height);
-        for (var j = 0; j < 3; j++) {
-            outputData[targetI + j] = inputData[i + j];
+    var origin = { x: ctx.canvas.width / 2, y: ctx.canvas.height / 2 };
+    for (var i = 0; i < outputData.length; i += 4) {
+        var outputCoords = iToXY(i, ctx.canvas.width, ctx.canvas.height);
+        var angle = Math.atan2(outputCoords.y - origin.y, outputCoords.x - origin.x);
+        var radius = Math.sqrt(Math.pow(outputCoords.x - origin.x, 2) + Math.pow(outputCoords.y - origin.y, 2));
+        if (radius > ctx.canvas.width / 2) {
+            for (var j = 0; j < 3; j++) {
+                outputData[i + j] = 0;
+            }
+            outputData[i + 3] = 255;
+            continue;
         }
-        outputData[targetI + 3] = 255;
+        var inputCoords = {
+            x: Math.round(angle / Math.PI / 2 * ctx.canvas.width),
+            y: Math.round(radius * 2)
+        };
+        var inputI = xYToI(inputCoords.x, inputCoords.y, ctx.canvas.width, ctx.canvas.height);
+        for (var j = 0; j < 3; j++) {
+            outputData[i + j] = inputData[inputI + j];
+        }
+        outputData[i + 3] = 255;
     }
     console.log(outputData)
     ctx.putImageData(outputImageData, 0, 0);
