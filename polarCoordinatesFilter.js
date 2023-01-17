@@ -34,6 +34,5 @@ function polarCoordinatesFilter(ctx) {
         }
         outputData[i + 3] = 255;
     }
-    console.log(outputData)
     ctx.putImageData(outputImageData, 0, 0);
 }
