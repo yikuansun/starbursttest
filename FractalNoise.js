@@ -40,7 +40,6 @@ class FractalNoise {
         this.canvas.width = this.width;
         this.canvas.height = this.height;
         var canv = this.canvas;
-        document.body.appendChild(this.svgFilter);
 
         var ctx = canv.getContext("2d");
         ctx.restore();
@@ -50,9 +49,12 @@ class FractalNoise {
         ctx.fillRect(0, 0, canv.width, canv.height);
         ctx.restore();
         ctx.save();
+
+        var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.appendChild(this.svgFilter);
+        document.body.appendChild(svg);
         ctx.filter = `url(#${this.svgFilter.id})`;
         ctx.fillRect(0, 0, canv.width, canv.height);
-
-        this.svgFilter.remove();
+        svg.remove();
     }
 }
