@@ -30,7 +30,6 @@ class SpotComponent {
             baseFrequency: [this.options.deformationFrequency, 0]
         });
         deformationTexture.render();
-        console.log(deformationTexture.svgFilter.id);
 
         ctx.restore();
         ctx.save();
