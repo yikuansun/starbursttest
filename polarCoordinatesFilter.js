@@ -17,7 +17,7 @@ function polarCoordinatesFilter(ctx) {
         var angle = inputCoords.x / ctx.canvas.width * 2 * Math.PI;
         var radius = inputCoords.y / 2;
         var targetCoords = {
-            x: Math.round(ctx.canvas.width / 2 + Math.sin(angle) * radius),
+            x: Math.round(ctx.canvas.width / 2 - Math.sin(angle) * radius),
             y: Math.round(ctx.canvas.height / 2 - Math.cos(angle) * radius)
         };
         var targetI = xYToI(targetCoords.x, targetCoords.y, ctx.canvas.width, ctx.canvas.height);
