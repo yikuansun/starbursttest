@@ -41,5 +41,7 @@ class SpotComponent {
         ctx.restore();
         ctx.save();
         colorvibrance(ctx, this.options.hue, this.options.saturation);
+
+        polarCoordinatesFilter(ctx);
     }
 }
