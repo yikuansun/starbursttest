@@ -7,13 +7,15 @@ var starParams = {
     hue: 200,
     saturation: 100,
 };
+
+var myBurst = new SpotComponent(512, starParams);
+
 for (var input of document.querySelectorAll("form input")) {
     input.addEventListener("change", function() {
         starParams[this.id] = parseFloat(this.value);
-
-        var myBurst = new SpotComponent(512, starParams);
-        myBurst.render();
         
+        myBurst.options = starParams;
+        myBurst.render();
         canvas.getContext("2d").drawImage(myBurst.canvas, 0, 0);
     });
 }
@@ -22,7 +24,6 @@ if (location.hash == "#Photopea") {
     document.querySelector("#photopeaButton").style.display = "inline-block";
 }
 
-var myBurst = new SpotComponent(512, starParams);
 myBurst.render();
 
 canvas.getContext("2d").drawImage(myBurst.canvas, 0, 0);
