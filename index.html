@@ -6,28 +6,31 @@
         <script src="https://yikuansun.github.io/lightning-experiment/lib/photopea.min.js"></script>
     </head>
     <body>
-        <button onclick="rasterize(svg).then(function(e) { var a = document.createElement('a'); a.href = e; a.download = 'burst.png'; a.click(); })">Export</button>
-        <button id="photopeaButton" style="display: none;" onclick="rasterize(svg).then(function(e) { Photopea.runScript(window.parent, `app.open('${e}', null, true)`); })">Add to document</button>
-        <svg viewBox="0 0 1920 1920" style="background-color: black;">
-            <defs>
-                <filter id="fastBlur">
-                    <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
-                </filter>
-            </defs>
-        </svg>
+        <button onclick="var a = document.createElement('a'); a.href = canvas.toDataURL(); a.download = 'burst.png'; a.click();">Export</button>
+        <button id="photopeaButton" style="display: none;" onclick="Photopea.runScript(window.parent, `app.open('${canvas.toDataURL()}', null, true)`);">Add to document</button>
+        <canvas width="1024" height="1024" style="width: 100%;"></canvas>
         <form>
-            <label for="numpts"># of spokes</label>
-            <input id="numpts" type="number" value="42" />
+            <label for="intensity">Intensity</label>
+            <input id="intensity" type="number" value="10" min="0" />
             <br />
-            <label for="burstSize">Burst size</label>
-            <input id="burstSize" type="number" value="300" />
+            <label for="deformationFrequency">Deformation Frequency</label>
+            <input id="deformationFrequency" type="number" value="0.006" min="0" step="0.001" />
             <br />
-            <label for="innerRadius">Inner radius</label>
-            <input id="innerRadius" type="number" value="30" />
+            <label for="deformationAmount">Deformation Amount</label>
+            <input id="deformationAmount" type="number" value="1.6" min="0" step="0.1" />
             <br />
-            <label for="blurAmount">Blur</label>
-            <input id="blurAmount" type="number" value="4" />
+            <label for="hue">Hue</label>
+            <input id="hue" type="number" value="200" min="0" max="360" />
+            <br />
+            <label for="saturation">Saturation</label>
+            <input id="saturation" type="number" value="100" min="0" max="100" />
+            <br />
         </form>
+        <script src="EllipticalGradient.js"></script>
+        <script src="FractalNoise.js"></script>
+        <script src="colorvibrance.js"></script>
+        <script src="polarCoordinatesFilter.js"></script>
+        <script src="SpotComponent.js"></script>
         <script src="code.js"></script>
     </body>
 </html>
