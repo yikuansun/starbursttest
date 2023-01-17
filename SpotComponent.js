@@ -27,7 +27,7 @@ class SpotComponent {
         ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         watch.start();
-        ctx.drawImage((new EllipticalGradient()).canvas, 0, this.options.intensity, this.canvas.width, this.canvas.height - this.options.intensity);
+        ctx.drawImage(prerenderedEllipticalGradient, 0, this.options.intensity, this.canvas.width, this.canvas.height - this.options.intensity);
         watch.stop();
         console.log("gradient:", watch.timeElapsed);
 
