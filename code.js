@@ -8,7 +8,7 @@ var starParams = {
     saturation: 100,
 };
 for (var input of document.querySelectorAll("form input")) {
-    input.addEventListener("input", function() {
+    input.addEventListener("change", function() {
         starParams[this.id] = parseFloat(this.value);
 
         var myBurst = new SpotComponent(512, starParams);
