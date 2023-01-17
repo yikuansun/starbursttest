@@ -18,9 +18,9 @@ function polarCoordinatesFilter(ctx) {
         var angle = Math.atan2(outputCoords.y - origin.y, outputCoords.x - origin.x);
         var radius = Math.sqrt(Math.pow(outputCoords.x - origin.x, 2) + Math.pow(outputCoords.y - origin.y, 2));
         if (radius > ctx.canvas.width / 2) {
-            for (var j = 0; j < 3; j++) {
-                outputData[i + j] = 0;
-            }
+            outputData[i] = 0;
+            outputData[i + 1] = 0;
+            outputData[i + 2] = 0;
             outputData[i + 3] = 255;
             continue;
         }
@@ -29,9 +29,9 @@ function polarCoordinatesFilter(ctx) {
             y: Math.round(radius * 2)
         };
         var inputI = xYToI(inputCoords.x, inputCoords.y, ctx.canvas.width, ctx.canvas.height);
-        for (var j = 0; j < 3; j++) {
-            outputData[i + j] = inputData[inputI + j];
-        }
+        outputData[i] = inputData[inputI];
+        outputData[i + 1] = inputData[inputI + 1];
+        outputData[i + 2] = inputData[inputI + 2];
         outputData[i + 3] = 255;
     }
     ctx.putImageData(outputImageData, 0, 0);
