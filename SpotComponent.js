@@ -24,7 +24,7 @@ class SpotComponent {
         ctx.save();
         ctx.fillStyle = "#FFFFFF";
         ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-        ctx.drawImage((new EllipticalGradient()).canvas, 0, this.options.intensity, this.canvas.width, this.canvas.height - this.options.intensity);
+        ctx.drawImage(prerenderedEllipticalGradient, 0, this.options.intensity, this.canvas.width, this.canvas.height - this.options.intensity);
 
         var deformationTexture = new FractalNoise(this.canvas.width, this.canvas.height, {
             baseFrequency: [this.options.deformationFrequency, 0]

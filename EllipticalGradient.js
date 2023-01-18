@@ -27,3 +27,5 @@ class EllipticalGradient {
         ctx.putImageData(iData, 0, 0);
     }
 }
+
+var prerenderedEllipticalGradient = (new EllipticalGradient()).canvas;
