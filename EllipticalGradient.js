@@ -28,4 +28,6 @@ class EllipticalGradient {
     }
 }
 
-var prerenderedEllipticalGradient = (new EllipticalGradient()).canvas;
+class PrerenderedEllipticalGradient {
+    static canvas = (new EllipticalGradient()).canvas;
+}
